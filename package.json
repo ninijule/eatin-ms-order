@@ -1,0 +1,45 @@
+{
+  "name": "API_Back_Typescript",
+  "version": "1.0.0",
+  "description": "API_Back_Typescript",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc --project ./",
+    "start": "node dist/app.js",
+    "build-start": "npm run build && npm run start",
+    "dockerize": "npm run docker-stop | npm run docker-rm | npm run docker-build",
+    "docker-stop": "docker stop eatin-ms-order || rem",
+    "docker-rm": "docker rm eatin-ms-order || rem",
+    "docker-build": "docker build -t eatin-ms-order .",
+    "docker-run": "docker run -d -p 3000:3000 --name eatin-ms-order eatin-ms-order",
+    "kube-clean": "kubectl delete deployment eatin-ms-order-deployment | kubectl delete service eatin-ms-order-service | kubectl delete configmap api-configmap",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ninijule/API_Back_Typescript.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ninijule/API_Back_Typescript/issues"
+  },
+  "homepage": "https://github.com/ninijule/API_Back_Typescript#readme",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "cookie-parser": "^1.4.5",
+    "express": "^4.17.1",
+    "express-validator": "^6.12.0",
+    "mongoose": "^5.12.14",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@types/cookie-parser": "^1.4.2",
+    "@types/express": "^4.17.12",
+    "@types/node": "^15.12.2",
+    "@types/uuid": "^8.3.0",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.2"
+  }
+}
