@@ -2,7 +2,7 @@ import { validationResult } from "express-validator";
 import { Request, Response, NextFunction } from "express";
 import createOrder from "../use_cases/createOrder";
 import deleteOrder from "../use_cases/deleteOrder";
-//import updateOrder from "../use_cases/updateOrder";
+import updateOrder from "../use_cases/updateOrder";
 import getOrder from "../use_cases/getOrder";
 import getAllOrder from "../use_cases/getAllOrder";
 
@@ -24,7 +24,6 @@ export default {
         restaurantId: req.body.restaurantId,
         content: req.body.content,
         profileId: JSON.parse(<string>req.headers.user).id,
-        role: JSON.parse(<string>req.headers.user).role,
       };
 
       return res.status(200).json((await createOrder(request))._id);
@@ -42,7 +41,6 @@ export default {
 
       const request: DeleteOrderRequest = {
         id: req.params.id,
-        role: JSON.parse(<string>req.headers.role).id,
         profileId: JSON.parse(<string>req.headers.user).id,
       };
       await deleteOrder(request);
@@ -98,12 +96,9 @@ export default {
       }
       const request: UpdateOrderRequest = {
         id: req.params.id,
-        name: req.body.name,
-        description: req.body.description,
-        profilePicture: req.body.profilePicture,
-        profileId: JSON.parse(<string>req.headers.user).id,
+        status: req.body.status,
       };
-      //await updateOrder(request);
+      await updateOrder(request);
       return res.sendStatus(200);
     } catch (error) {
       next(error);

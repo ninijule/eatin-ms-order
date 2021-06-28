@@ -16,10 +16,6 @@ export default async (request: DeleteOrderRequest) => {
     );
   }
 
-  if (request.role != "USR") {
-    throw new NotAuthorizedError();
-  }
-
   if (request.profileId != order.profileId) {
     throw new NotAuthorizedError();
   }
