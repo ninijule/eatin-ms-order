@@ -1,6 +1,6 @@
 export default interface CreateRestaurantRequest {
   restaurantId: String;
   content: String[];
-  totalPrice: Number;
+  role: String;
   profileId: String;
 }

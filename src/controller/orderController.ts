@@ -1,7 +1,7 @@
 import { validationResult } from "express-validator";
 import { Request, Response, NextFunction } from "express";
 import createOrder from "../use_cases/createOrder";
-//import deleteOrder from "../use_cases/deleteOrder";
+import deleteOrder from "../use_cases/deleteOrder";
 //import updateOrder from "../use_cases/updateOrder";
 import getOrder from "../use_cases/getOrder";
 import getAllOrder from "../use_cases/getAllOrder";
@@ -23,8 +23,8 @@ export default {
       const request: CreateOrderRequest = {
         restaurantId: req.body.restaurantId,
         content: req.body.content,
-        totalPrice: req.body.totalPrice,
         profileId: JSON.parse(<string>req.headers.user).id,
+        role: JSON.parse(<string>req.headers.user).role,
       };
 
       return res.status(200).json((await createOrder(request))._id);
@@ -42,9 +42,10 @@ export default {
 
       const request: DeleteOrderRequest = {
         id: req.params.id,
+        role: JSON.parse(<string>req.headers.role).id,
         profileId: JSON.parse(<string>req.headers.user).id,
       };
-      //await deleteOrder(request);
+      await deleteOrder(request);
       return res.sendStatus(204);
     } catch (error) {
       next(error);

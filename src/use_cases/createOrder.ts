@@ -1,11 +1,15 @@
+import axios from "axios";
 import Order from "../repositories/order";
-import ResourceNotFoundError from "../types/errors/resourceNotFoundError";
 import CreateOrderRequest from "../types/requests/createOrderRequest";
 
 export default async (request: CreateOrderRequest) => {
-  const restaurant = await Order.findOne({ restaurant: request.restaurantId });
-  if (restaurant) {
-    throw new ResourceNotFoundError("RestaurantId not found.");
+  try {
+    const restaurant = await axios.get(
+      `http://localhost:3000/restaurant/${request.restaurantId}`
+    );
+  } catch (error) {
+    throw new Error("Restaurant not found");
   }
+
   return await Order.create(request);
 };

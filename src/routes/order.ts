@@ -12,8 +12,6 @@ router.post(
 
   body("content"),
 
-  body("totalPrice").isNumeric(),
-
   orderController.createOrder
 );
 
