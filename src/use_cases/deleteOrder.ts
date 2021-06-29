@@ -7,7 +7,7 @@ export default async (request: DeleteOrderRequest) => {
   const order = await Order.findById(request.id);
 
   if (!order) {
-    throw new ResourceNotFoundError("order not found");
+    throw new ResourceNotFoundError("Order");
   }
 
   if (order.status == "PRE") {

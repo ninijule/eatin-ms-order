@@ -1,13 +1,14 @@
 import axios from "axios";
 import Order from "../repositories/order";
 import NotAuthorizedError from "../types/errors/notAuthorizedError";
+import ResourceNotFoundError from "../types/errors/resourceNotFoundError";
 import GetOrderRequest from "../types/requests/getOrderRequest";
 
 export default async (request: GetOrderRequest) => {
   const order = await Order.findById(request.id);
 
   if (!order) {
-    throw new Error("order not found");
+    throw new ResourceNotFoundError("Order");
   }
 
   switch (request.role) {
@@ -24,7 +25,7 @@ export default async (request: GetOrderRequest) => {
           `http://localhost:3000/restaurant?profileId=${request.profileId}`
         );
       } catch (error) {
-        throw new Error("Restaurant not found");
+        throw new ResourceNotFoundError("Restaurant");
       }
 
       if (result.data.length == 0) {
