@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 mongoose.connect(
-  `mongodb://localhost/test`,
+  `mongodb://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@mongodb-service/eatin?authSource=admin`,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,

@@ -22,7 +22,7 @@ export default async (request: GetOrderRequest) => {
       let result;
       try {
         result = await axios.get(
-          `http://localhost:3000/restaurant?profileId=${request.profileId}`
+          `http://eatin-ms-restaurant-service:3000/restaurant?profileId=${request.profileId}`
         );
       } catch (error) {
         throw new ResourceNotFoundError("Restaurant");

@@ -23,6 +23,6 @@ app.use((err: any, req: any, res: any, next: any) => {
   });
 });
 
-app.listen(3001, () => {
+app.listen(3000, () => {
   console.log("The application is listening on port 3000 ! ");
 });

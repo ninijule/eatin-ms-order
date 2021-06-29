@@ -6,7 +6,7 @@ import CreateOrderRequest from "../types/requests/createOrderRequest";
 export default async (request: CreateOrderRequest) => {
   try {
     const restaurant = await axios.get(
-      `http://localhost:3000/restaurant/${request.restaurantId}`
+      `http://eatin-ms-restaurant-service:3000/restaurant/${request.restaurantId}`
     );
   } catch (error) {
     throw new ResourceNotFoundError("Restaurant");

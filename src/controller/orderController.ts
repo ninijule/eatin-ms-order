@@ -4,13 +4,13 @@ import createOrder from "../use_cases/createOrder";
 import deleteOrder from "../use_cases/deleteOrder";
 import updateOrder from "../use_cases/updateOrder";
 import getOrder from "../use_cases/getOrder";
-import getAllOrder from "../use_cases/getAllOrder";
+import getAllOrder from "../use_cases/getAllOrders";
 
 import CreateOrderRequest from "../types/requests/createOrderRequest";
 import UpdateOrderRequest from "../types/requests/updateOrderRequest";
 import DeleteOrderRequest from "../types/requests/deleteOrderRequest";
 import GetOrderRequest from "../types/requests/getOrderRequest";
-import GetAllOrderRequest from "../types/requests/getAllOrderRequest";
+import GetAllOrderRequest from "../types/requests/getAllOrdersRequest";
 
 export default {
   createOrder: async (req: Request, res: Response, next: NextFunction) => {
@@ -81,6 +81,7 @@ export default {
 
       const request: GetAllOrderRequest = {
         profileId: JSON.parse(<string>req.headers.user).id,
+        role: JSON.parse(<string>req.headers.user).role,
       };
 
       return res.status(200).json(await getAllOrder(request));
