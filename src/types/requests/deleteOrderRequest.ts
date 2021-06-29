@@ -1,4 +1,4 @@
-export default interface DeleteRestaurantRequest {
+export default interface DeleteOrderRequest {
   id: String;
   profileId: String;
 }

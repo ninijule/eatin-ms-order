@@ -1,4 +1,4 @@
-export default interface GetAllOrderRequest {
+export default interface GetAllOrdersRequest {
   profileId: String;
   role: String;
 }

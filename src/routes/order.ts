@@ -36,11 +36,7 @@ router.get(
 router.put(
   "/:id",
 
-  body("name").escape().isLength({ min: 1, max: 50 }),
-
-  body("description").escape().isLength({ min: 1, max: 255 }),
-
-  body("profilePicture").isLength({ min: 1, max: 255 }),
+  body("status").escape().isLength({ min: 1, max: 50 }),
 
   orderController.updateOrder
 );

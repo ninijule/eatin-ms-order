@@ -32,7 +32,7 @@ export default async (request: GetOrderRequest) => {
         throw new NotAuthorizedError();
       }
 
-      if (result.data[0]["_id"] != order.restaurantId) {
+      if (result.data["_id"] != order.restaurantId) {
         throw new NotAuthorizedError();
       }
       break;

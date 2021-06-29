@@ -10,7 +10,7 @@ import CreateOrderRequest from "../types/requests/createOrderRequest";
 import UpdateOrderRequest from "../types/requests/updateOrderRequest";
 import DeleteOrderRequest from "../types/requests/deleteOrderRequest";
 import GetOrderRequest from "../types/requests/getOrderRequest";
-import GetAllOrderRequest from "../types/requests/getAllOrdersRequest";
+import GetAllOrdersRequest from "../types/requests/getAllOrdersRequest";
 
 export default {
   createOrder: async (req: Request, res: Response, next: NextFunction) => {
@@ -79,7 +79,7 @@ export default {
         return res.status(400).json({ errors: errors.array() });
       }
 
-      const request: GetAllOrderRequest = {
+      const request: GetAllOrdersRequest = {
         profileId: JSON.parse(<string>req.headers.user).id,
         role: JSON.parse(<string>req.headers.user).role,
       };
@@ -98,6 +98,7 @@ export default {
       const request: UpdateOrderRequest = {
         id: req.params.id,
         status: req.body.status,
+        profileId: JSON.parse(<string>req.headers.user).id,
       };
       await updateOrder(request);
       return res.sendStatus(200);

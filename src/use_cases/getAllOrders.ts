@@ -17,5 +17,5 @@ export default async (request: GetAllOrdersRequest) => {
     throw new ResourceNotFoundError("Restaurant");
   }
 
-  return await Order.find({ restaurantId: result.data.restaurantId });
+  return await Order.find({ restaurantId: result.data["_id"] });
 };
