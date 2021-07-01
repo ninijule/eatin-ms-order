@@ -24,4 +24,14 @@ export default async (request: updateOrderRequest) => {
       throw error;
     }
   }
+
+  try {
+    axios.post("http://eatin-ms-log-service:3000/log", {
+      name: `Order ${order.id} is ready`,
+      type: "Order",
+      content: `The order of ProfileId is ready`,
+    });
+  } catch (error) {
+    console.error("Failed to reach log service.");
+  }
 };
