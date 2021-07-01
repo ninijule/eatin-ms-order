@@ -11,7 +11,7 @@ export default async (request: CreateOrderRequest) => {
     await axios.post("http://eatin-ms-log-service:3000/log", {
       name: `Order is being created`,
       type: "Order",
-      content: `The order has started to be create`,
+      content: `New order created`,
     });
   } catch (error) {
     throw new ResourceNotFoundError("Restaurant");
