@@ -1,6 +1,5 @@
 import axios from "axios";
 import Order from "../repositories/order";
-import CreateDeliveryError from "../types/errors/createDeliveryError";
 import ResourceNotFoundError from "../types/errors/resourceNotFoundError";
 import updateOrderRequest from "../types/requests/updateOrderRequest";
 
@@ -23,15 +22,5 @@ export default async (request: updateOrderRequest) => {
     } catch (error) {
       throw error;
     }
-  }
-
-  try {
-    axios.post("http://eatin-ms-log-service:3000/log", {
-      name: `Order ${order.id} is ready`,
-      type: "Order",
-      content: `The order of ProfileId is ready`,
-    });
-  } catch (error) {
-    console.error("Failed to reach log service.");
   }
 };

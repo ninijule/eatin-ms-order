@@ -8,6 +8,11 @@ export default async (request: CreateOrderRequest) => {
     const restaurant = await axios.get(
       `http://eatin-ms-restaurant-service:3000/restaurant/${request.restaurantId}`
     );
+    await axios.post("http://eatin-ms-log-service:3000/log", {
+      name: `Order is being created`,
+      type: "Order",
+      content: `The order has started to be create`,
+    });
   } catch (error) {
     throw new ResourceNotFoundError("Restaurant");
   }
